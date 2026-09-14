@@ -50,6 +50,9 @@ public class CandidateChatService {
             return new CandidateChatResponse(answer);
         } catch (JsonProcessingException e) {
             throw new IllegalStateException("Could not prepare the candidate chat context.");
+        } catch (RuntimeException e) {
+            throw new com.bgv.platform.exception.AiServiceUnavailableException(
+                    "Gemini chat request failed. Verify model access and API quota, then retry.");
         }
     }
 
@@ -66,4 +69,5 @@ public class CandidateChatService {
                         "status", String.valueOf(verification.getStatus())))
                 .toList();
     }
+
 }

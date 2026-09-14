@@ -15,7 +15,7 @@ spring:
         api-key: ${GEMINI_API_KEY:}
         chat:
           options:
-            model: gemini-2.5-flash-lite
+            model: gemini-3.5-flash-lite
             temperature: 0
   datasource:
     url: jdbc:postgresql://localhost:5432/bgvdb
