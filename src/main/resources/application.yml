@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: bgv-platform
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bgvdb
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: science
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 25MB
+
+# Local file storage settings
+bgv:
+  file:
+    upload-dir: ./uploads
+    allowed-extensions: pdf,jpg,jpeg,png,doc,docx
+    max-file-size-bytes: 20971520 # 20MB
+  cors:
+    allowed-origins: http://localhost:5173,http://localhost:4200
