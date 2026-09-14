@@ -4,6 +4,17 @@ server:
 spring:
   application:
     name: bgv-platform
+  ai:
+    model:
+      chat: google-genai
+    google:
+      genai:
+        # Set GEMINI_API_KEY in the environment. Do not commit real keys.
+        api-key: ${GEMINI_API_KEY:}
+        chat:
+          options:
+            model: gemini-2.5-flash-lite
+            temperature: 0
   datasource:
     url: jdbc:postgresql://localhost:5432/bgvdb
     driver-class-name: org.postgresql.Driver
