@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface DocumentExtractionRepository extends JpaRepository<DocumentExtraction, Long> {
     Optional<DocumentExtraction> findByDocumentId(Long documentId);
+    void deleteByDocumentId(Long documentId);
 }

@@ -5,6 +5,7 @@ import com.bgv.platform.model.Document;
 import com.bgv.platform.model.enums.DocumentType;
 import com.bgv.platform.exception.ResourceNotFoundException;
 import com.bgv.platform.repository.DocumentRepository;
+import com.bgv.platform.repository.DocumentExtractionRepository;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,13 +17,16 @@ import java.util.List;
 public class DocumentService {
 
     private final DocumentRepository documentRepository;
+    private final DocumentExtractionRepository extractionRepository;
     private final FileStorageService fileStorageService;
     private final CandidateService candidateService;
 
     public DocumentService(DocumentRepository documentRepository,
+                            DocumentExtractionRepository extractionRepository,
                             FileStorageService fileStorageService,
                             CandidateService candidateService) {
         this.documentRepository = documentRepository;
+        this.extractionRepository = extractionRepository;
         this.fileStorageService = fileStorageService;
         this.candidateService = candidateService;
     }
@@ -63,6 +67,7 @@ public class DocumentService {
     @Transactional
     public void delete(Long documentId) {
         Document document = findById(documentId);
+        extractionRepository.deleteByDocumentId(documentId);
         fileStorageService.delete(document.getFilePath());
         documentRepository.delete(document);
     }
