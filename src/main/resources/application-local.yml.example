@@ -1,0 +1,7 @@
+# Copy this file to application-local.yml, then replace the placeholder.
+# application-local.yml is intentionally ignored by Git.
+spring:
+  ai:
+    google:
+      genai:
+        api-key: PASTE_YOUR_GEMINI_API_KEY_HERE
